@@ -226,3 +226,82 @@ footer img {
     padding: 0 20px;
   }
 }
+/* CONTADOR DE CADA PINTURA */
+.contador {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #333;
+}
+
+.contador p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #f0f0f0;
+}
+
+.contador button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contador button:hover {
+  background-color: #555;
+}
+/*formulario*/
+.formulario-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  color: #f0f0f0;
+}
+
+.formulario h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.input-error {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.btn-guardar {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-guardar:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+}

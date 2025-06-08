@@ -1,5 +1,7 @@
 import PaintingCard from '../assets/components/PaintingCard';
-import FormularioRegistro from '../formularios/FormularioRegistro'; 
+import FormularioRegistro from '../formularios/FormularioRegistro';     
+import { ProductProvider } from '../context/ProductContext'; 
+import InformacionProductos from './InformacionProductos';            
 
 const paintings = [
   { id: '001', title: 'La Monna Lisa', author: 'Leonardo da Vinci', year: 1503, image: '/img/monalisa.jpg' },
@@ -29,10 +31,17 @@ function Home() {
         ))}
       </div>
 
-      {/* Aquí mostramos el formulario justo debajo de las pinturas */}
+      {/* Sección de productos desde la API */}
+      <h2 className="titulo-principal">Productos a la Venta</h2>
+      <ProductProvider>
+        <InformacionProductos />
+      </ProductProvider>
+
+      {/* Formulario de registro */}
       <FormularioRegistro />
     </section>
   );
 }
 
 export default Home;
+

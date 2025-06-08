@@ -3,8 +3,17 @@ import { useState } from 'react';
 function PaintingCard({ id, title, image, author, year }) {
   const [count, setCount] = useState(0);
 
-  const aumentar = () => setCount(count + 1);
-  const disminuir = () => setCount(count - 1);
+  const aumentar = () => {
+    // Se quita la condición 'if (count < 10)'
+    setCount(count + 1);
+  };
+
+  const disminuir = () => {
+    if (count > 0) { // Se mantiene la condición para que no baje de 0
+      setCount(count - 1);
+    }
+  };
+
   const resetear = () => setCount(0);
 
   return (

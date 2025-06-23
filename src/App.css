@@ -134,13 +134,17 @@ section h2 {
 /* FOOTER */
 footer {
   width: 100%;
-  padding: 40px 60px;
+  padding: 60px 60px 80px 60px; /* Increased bottom padding for spacing */
   background-color: #000000;
   border-top: 1px solid #333;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   color: #ffffff;
+  position: relative;
+  clear: both; /* Ensure footer does not overlap floated elements */
+  flex-shrink: 0;
+  margin-top: 0;
 }
 
 footer ul {
@@ -304,4 +308,16 @@ input {
 .btn-guardar:disabled {
   background-color: #444;
   cursor: not-allowed;
+}
+
+/* New styles for app container and content */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  padding-bottom: 60px; /* Add bottom padding to prevent footer overlap with paintings and products */
 }

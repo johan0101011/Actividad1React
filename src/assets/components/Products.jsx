@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 
-const Products = ({ producto }) => {
+const Products = ({ producto, agregarProductoAlCarrito }) => {
   const [count, setCount] = useState(0);
   const [statusBtn, setStatusBtn] = useState(false);
 
@@ -16,6 +16,7 @@ const Products = ({ producto }) => {
   const agregarAlCarrito = () => {
     if (count > 0) {
       setStatusBtn(true);
+      agregarProductoAlCarrito(producto, count);
       Swal.fire('Producto agregado', `${count} unidad(es) de "${producto.title}"`, 'success');
       setCount(0);
       setStatusBtn(false);

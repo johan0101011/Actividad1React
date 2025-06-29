@@ -6,6 +6,7 @@ export const CartProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+
   const agregarProductoAlCarrito = (producto, cantidad) => {
     const existingIndex = carrito.findIndex(item => item.nombre === producto.title);
     let newCart = [...carrito];
@@ -16,7 +17,8 @@ export const CartProvider = ({ children }) => {
       newCart.push({
         nombre: producto.title,
         cantidad: cantidad,
-        precio: producto.price * cantidad
+        precio: producto.price * cantidad,
+        imagen: producto.image // Added image property
       });
     }
     setCarrito(newCart);
@@ -26,6 +28,31 @@ export const CartProvider = ({ children }) => {
     const newCart = [...carrito];
     newCart.splice(index, 1);
     setCarrito(newCart);
+  };
+
+  // New function to incrementar cantidad
+  const incrementarCantidad = (index) => {
+    const newCart = [...carrito];
+    newCart[index].cantidad += 1;
+    // Update price accordingly (assuming precio is total price for that product)
+    const unitPrice = newCart[index].precio / (newCart[index].cantidad - 1);
+    newCart[index].precio = unitPrice * newCart[index].cantidad;
+    setCarrito(newCart);
+  };
+
+  // New function to decrementar cantidad
+  const decrementarCantidad = (index) => {
+    const newCart = [...carrito];
+    if (newCart[index].cantidad > 1) {
+      newCart[index].cantidad -= 1;
+      const unitPrice = newCart[index].precio / (newCart[index].cantidad + 1);
+      newCart[index].precio = unitPrice * newCart[index].cantidad;
+      setCarrito(newCart);
+    } else {
+      // If quantity is 1, remove the product from cart
+      newCart.splice(index, 1);
+      setCarrito(newCart);
+    }
   };
 
   const toggleCart = () => {
@@ -39,6 +66,8 @@ export const CartProvider = ({ children }) => {
       carrito,
       agregarProductoAlCarrito,
       eliminarDelCarrito,
+      incrementarCantidad,
+      decrementarCantidad,
       isCartOpen,
       toggleCart,
       itemCount

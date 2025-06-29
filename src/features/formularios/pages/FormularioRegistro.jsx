@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import 'animate.css';
+import { useNavigate } from 'react-router-dom';
+import Header from '../../../shared/components/Header';
 
-function FormularioRegistro() {
+function FormularioRegistro({ onBack }) {
   const [formData, setFormData] = useState({
     nombre: '',
     apellidos: '',
@@ -18,6 +20,8 @@ function FormularioRegistro() {
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const [activeSection, setActiveSection] = useState('registro');
+  const navigate = useNavigate();
 
   const validateField = (name, value) => {
     let error = '';
@@ -93,6 +97,12 @@ function FormularioRegistro() {
         hideClass: {
           popup: 'animate__animated animate__fadeOutUp',
         },
+      }).then(() => {
+        if (onBack) {
+          onBack();
+        } else {
+          navigate('/login');
+        }
       });
 
       // Limpiar formulario y errores después del éxito
@@ -118,32 +128,41 @@ function FormularioRegistro() {
   };
 
   return (
-    <div className="formulario-container">
-      <h2>Registro de Usuario</h2>
-      <form onSubmit={handleSubmit} className="formulario">
-        {['nombre', 'apellidos', 'telefono', 'email'].map((field) => (
-          <div key={field} className="form-group">
-            <label htmlFor={field}>
-              {field.charAt(0).toUpperCase() + field.slice(1)} *
-            </label>
-            <input
-              type={field === 'email' ? 'email' : 'text'}
-              name={field}
-              id={field}
-              value={formData[field]}
-              onChange={handleChange}
-              className={errors[field] ? 'input-error' : ''}
-            />
-            {errors[field] && (
-              <p className="error-message">{errors[field]}</p>
-            )}
-          </div>
-        ))}
-        <button type="submit" disabled={!isFormValid} className="btn-guardar">
-          Guardar
-        </button>
-      </form>
-    </div>
+    <>
+      <Header activeSection={activeSection} setActiveSection={setActiveSection} />
+      <div className="formulario-container" style={{backgroundColor: '#222', padding: '20px', borderRadius: '10px', maxWidth: '350px', margin: '40px auto', color: '#eee' }}>
+        <h2>Registro de Usuario</h2>
+        <form onSubmit={handleSubmit} className="formulario">
+          {['nombre', 'apellidos', 'telefono', 'email'].map((field) => (
+            <div key={field} className="form-group" style={{marginBottom: '15px'}}>
+              <label htmlFor={field} style={{display: 'block', marginBottom: '6px'}}>
+                {field.charAt(0).toUpperCase() + field.slice(1)} *
+              </label>
+              <input
+                type={field === 'email' ? 'email' : 'text'}
+                name={field}
+                id={field}
+                value={formData[field]}
+                onChange={handleChange}
+                className={errors[field] ? 'input-error' : ''}
+                style={{width: '100%', padding: '8px', borderRadius: '5px', border: errors[field] ? '1px solid #ff4d4f' : '1px solid #ccc'}}
+              />
+              {errors[field] && (
+                <p className="error-message" style={{color: '#ff4d4f', marginTop: '4px'}}>{errors[field]}</p>
+              )}
+            </div>
+          ))}
+          <button type="submit" disabled={!isFormValid} className="btn-guardar" style={{backgroundColor: '#444', color: '#eee', padding: '10px 15px', border: 'none', borderRadius: '5px', cursor: 'pointer'}}>
+            Guardar
+          </button>
+        </form>
+        {onBack && (
+          <button onClick={onBack} style={{marginTop: '20px', backgroundColor: '#d9534f', color: 'white', border: 'none', padding: '10px 15px', borderRadius: '5px', cursor: 'pointer'}}>
+            Iniciar Sesión
+          </button>
+        )}
+      </div>
+    </>
   );
 }
 

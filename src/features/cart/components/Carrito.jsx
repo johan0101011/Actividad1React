@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useCart } from '../hooks/cartContext';
 
 function Carrito() {
-  const { carrito, eliminarDelCarrito } = useCart();
+  const { carrito, eliminarDelCarrito, incrementarCantidad, decrementarCantidad } = useCart();
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
   const [mostrarExito, setMostrarExito] = useState(false);
 
@@ -49,9 +49,50 @@ function Carrito() {
                 backgroundColor: '#222',
                 marginBottom: '10px',
                 padding: '10px',
-                borderRadius: '8px'
+                borderRadius: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
               }}>
-                <strong>{producto.nombre}</strong> - ${producto.precio.toLocaleString()}
+                <img
+                  src={producto.imagen}
+                  alt={producto.nombre}
+                  style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '6px' }}
+                />
+                <div style={{ flex: 1 }}>
+                  <strong>{producto.nombre}</strong> - ${producto.precio.toLocaleString()}
+                  <div style={{ marginTop: '5px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <button
+                      onClick={() => decrementarCantidad(index)}
+                      style={{
+                        backgroundColor: '#000000',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        padding: '2px 8px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      -
+                    </button>
+                    <span>{producto.cantidad || 1}</span>
+                    <button
+                      onClick={() => incrementarCantidad(index)}
+                      style={{
+                        backgroundColor: '#000000',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        padding: '2px 8px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
                 <button
                   onClick={() => eliminarDelCarrito(index)}
                   style={{
@@ -61,7 +102,9 @@ function Carrito() {
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    height: '30px',
+                    alignSelf: 'flex-start'
                   }}
                 >
                   Eliminar

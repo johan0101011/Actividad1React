@@ -1,0 +1,89 @@
+.login-container {
+  max-width: 320px;
+  margin: 40px auto;
+  background: #222; /* dark background */
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ddd; /* light text */
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #eee;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+.input-dark {
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: #eee;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.input-dark::placeholder {
+  color: #f8f6f6;
+}
+
+.login-button {
+  width: 100%;
+  background-color: #444; /* dark gray */
+  color: white;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+.login-button:hover:not(:disabled) {
+  background-color: #222;
+}
+
+.login-info {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #fffdfd;
+  text-align: center;
+}
+
+.login-info p {
+  margin: 4px 0;
+}
+
+.register-logo {
+  display: inline-block;
+  margin-top: 10px;
+  color: #bbb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-logo:hover {
+  text-decoration: underline;
+  color: #eee;
+}

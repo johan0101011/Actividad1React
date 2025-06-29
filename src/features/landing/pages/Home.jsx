@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PaintingCard from '../../../assets/components/PaintingCard';
 import FormularioRegistro from '../../formularios/FormularioRegistro';
 import { ProductProvider } from '../../../shared/contexts/ProductContext';
 import InformacionProductos from './InformacionProductos';
 import Carrito from '../../cart/components/Carrito';
+import LoginForm from '../../auth/components/LoginForm';
 
 const paintings = [
   { id: '01', title: 'La Monna Lisa', author: 'Leonardo da Vinci', year: 1503, image: '/img/monalisa.jpg' },
@@ -20,7 +21,7 @@ const paintings = [
   { id: '13', title: 'La Novia Renuente', author: 'Jean-Pierre Alexandre Antigna', year: 1866, image: '/img/la-novia-renuente.jpg' },
 ];
 
-function Home({ activeSection }) {
+function Home({ activeSection, setActiveSection }) {
   return (
     <section className="galeria-obras">
       {activeSection === 'pinturas' && (
@@ -55,7 +56,29 @@ function Home({ activeSection }) {
       )}
 
       {activeSection === 'registro' && (
-        <FormularioRegistro />
+        <>
+          <FormularioRegistro />
+          <div style={{ marginTop: '20px', textAlign: 'center' }}>
+            <button
+              onClick={() => setActiveSection('login')}
+              style={{
+                backgroundColor: '#d32f2f',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+              }}
+            >
+              Iniciar Sesión
+            </button>
+          </div>
+        </>
+      )}
+
+      {activeSection === 'login' && (
+        <LoginForm />
       )}
     </section>
   );

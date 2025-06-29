@@ -1,52 +1,64 @@
 import React from 'react';
 import { useCart } from '../../features/cart/hooks/cartContext';
+import { useNavigate } from 'react-router-dom';
 
 function Header({ activeSection, setActiveSection }) {
   const { itemCount } = useCart();
+  const navigate = useNavigate();
+
+  const handleSectionClick = (section) => {
+    if (section === 'registro') {
+      navigate('/login'); // Navigate to login page where registration is handled
+    } else if (section === 'pinturas') {
+      setActiveSection('pinturas');
+      navigate('/'); // Navigate to home page
+    } else if (section === 'productos') {
+      setActiveSection('productos');
+      navigate('/'); // Navigate to home page to show products section
+    }
+  };
 
   return (
-    <header id="cabecera" style={{ position: 'relative' }}>
-      <div id="logo">
-        <img src="/img/ARTLINE.png" alt="logo" width="110px" />
+    <header id="cabecera" style={{ position: 'relative', display: 'flex', alignItems: 'center', padding: '10px 20px', backgroundColor: '#222', color: '#eee' }}>
+      <div id="logo" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { setActiveSection('pinturas'); navigate('/'); }}>
+        <img src="/img/ARTLINE.png" alt="logo" width="40px" style={{ marginRight: '10px' }} />
+        <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 'bold' }}>ARTLINE</h1>
       </div>
-      <h1>ARTLINE</h1>
-      <nav id="menu">
-        <ul style={{ fontSize: '16px' }}>
-          <li>
+      <nav id="menu" style={{ marginLeft: 'auto' }}>
+        <ul style={{ fontSize: '16px', display: 'flex', listStyle: 'none', margin: 0, padding: 0 }}>
+          <li style={{ margin: '0 10px' }}>
             <button
               className={activeSection === 'pinturas' ? 'active' : ''}
-              onClick={() => setActiveSection('pinturas')}
+              onClick={() => handleSectionClick('pinturas')}
               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit', color: 'inherit' }}
             >
               PINTURAS
             </button>
           </li>
-          <li>
+          <li style={{ margin: '0 10px' }}>
             <button
               className={activeSection === 'productos' ? 'active' : ''}
-              onClick={() => setActiveSection('productos')}
+              onClick={() => handleSectionClick('productos')}
               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit', color: 'inherit' }}
             >
               PRODUCTOS
             </button>
           </li>
-          <li>
+          <li style={{ margin: '0 10px' }}>
             <button
               className={activeSection === 'registro' ? 'active' : ''}
-              onClick={() => setActiveSection('registro')}
+              onClick={() => handleSectionClick('registro')}
               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit', color: 'inherit' }}
               title="Ir a registro"
             >
               REGISTRO
             </button>
           </li>
-          {/* <li><a href="#">AUTORES</a></li>
-          <li><a href="#">BIOGRAFÍAS</a></li> */}
         </ul>
       </nav>
 
       <div
-        style={{ position: 'absolute', top: '20px', right: '20px', cursor: 'pointer', fontSize: '24px' }}
+        style={{ position: 'relative', cursor: 'pointer', fontSize: '24px', marginLeft: '20px' }}
         onClick={() => setActiveSection('carrito')}
       >
         <svg

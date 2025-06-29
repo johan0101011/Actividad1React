@@ -1,15 +1,32 @@
+import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, isLoading, error } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
+
+  if (isLoading) {
+    return (
+      <div className="dashboard-container">
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="dashboard-container">
+        <p>Error: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-container">
@@ -19,20 +36,28 @@ const Dashboard = () => {
           Cerrar Sesión
         </button>
       </div>
-
       <div className="dashboard-content">
-        <div className="user-info">
-          <h2>Información del Usuario</h2>
-          {user?.avatar && (
+        <h3>Información del Usuario</h3>
+        {user ? (
+          <div className="user-info">
             <div className="user-avatar">
-              <img src={user.avatar} alt={`Avatar de ${user.name}`} />
+              {user.avatar ? (
+                <img src={user.avatar} alt={`${user.name}'s avatar`} />
+              ) : (
+                <img
+                  src="https://via.placeholder.com/70?text=User"
+                  alt="Avatar por defecto"
+                />
+              )}
             </div>
-          )}
-          <p><strong>Nombre:</strong> {user?.name}</p>
-          <p><strong>Email:</strong> {user?.email}</p>
-          <p><strong>ID:</strong> {user?.id}</p>
-          <p><strong>Rol:</strong> {user?.role}</p>
-        </div>
+            <p><strong>Nombre:</strong> {user.name}</p>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>ID:</strong> {user.id}</p>
+            <p><strong>Rol:</strong> {user.role}</p>
+          </div>
+        ) : (
+          <p>No hay información del usuario disponible.</p>
+        )}
       </div>
     </div>
   );

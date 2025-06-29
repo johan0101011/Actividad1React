@@ -12,7 +12,7 @@ function Header({ activeSection, setActiveSection }) {
       </div>
       <h1>ARTLINE</h1>
       <nav id="menu">
-        <ul>
+        <ul style={{ fontSize: '16px' }}>
           <li>
             <button
               className={activeSection === 'pinturas' ? 'active' : ''}

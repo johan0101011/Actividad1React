@@ -44,7 +44,7 @@ function Home({ activeSection, setActiveSection }) {
 
       {activeSection === 'productos' && (
         <>
-          <h2 className="titulo-principal">Productos a la Venta</h2>
+          
           <ProductProvider>
             <InformacionProductos />
           </ProductProvider>

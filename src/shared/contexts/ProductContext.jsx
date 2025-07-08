@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { createContext, useState, useEffect } from 'react';
 
 export const ProductContext = createContext();
@@ -8,33 +9,34 @@ export const ProductProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchProductos = async () => {
-      try {
-        const res = await fetch('https://fakestoreapi.com/products');
-        if (!res.ok) throw new Error('Error al obtener productos');
-        const data = await res.json();
-        setProductos(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProductos();
-  }, []);
-
-  const createProduct = async (product) => {
-    const res = await fetch('https://fakestoreapi.com/products', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product),
-    });
-    if (!res.ok) throw new Error('Error creando producto');
-    const newProduct = await res.json();
-    setProductos((prev) => [...prev, newProduct]);
-    return newProduct;
+useEffect(() => {
+  const fetchProductos = async () => {
+    try {
+      const res = await fetch('https://fakestoreapi.com/products');
+      if (!res.ok) throw new Error('Error al obtener productos');
+      const data = await res.json();
+      setProductos(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
+  fetchProductos();
+}, []);
+
+const createProduct = async (product) => {
+  const res = await fetch('https://fakestoreapi.com/products', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(product),
+  });
+  if (!res.ok) throw new Error('Error creando producto');
+  const newProduct = await res.json();
+  setProductos((prev) => [...prev, newProduct]);
+  return newProduct;
+};
+
 
   const updateProduct = async (product) => {
     const res = await fetch(`https://fakestoreapi.com/products/${product.id}`, {

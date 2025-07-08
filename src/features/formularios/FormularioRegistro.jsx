@@ -45,7 +45,7 @@ function FormularioRegistro() {
         if (!value) {
           error = 'El email es obligatorio.';
         }
-        // SOLUCIÓN: Cambiado \\s a \s
+        
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
           error = 'Formato de email inválido.';
         }
@@ -64,7 +64,7 @@ function FormularioRegistro() {
   };
 
   useEffect(() => {
-    // Verificar si todos los campos tienen un valor (no están vacíos)
+    
     const allFieldsFilled = Object.values(formData).every((v) => v.trim() !== '');
     // Verificar si no hay ningún mensaje de error
     const noValidationErrors = Object.values(errors).every((e) => e === '');

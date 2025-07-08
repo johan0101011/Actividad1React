@@ -12,7 +12,7 @@ const InformacionProductos = () => {
 
   return (
     <div className="app-content">
-      <h1 className="titulo-principal">PRODUCTOS A AL VENTA</h1>
+      
       <div className="gallery">
         {productos.map((p) => (
           <Products key={p.id} producto={p} agregarProductoAlCarrito={agregarProductoAlCarrito} />

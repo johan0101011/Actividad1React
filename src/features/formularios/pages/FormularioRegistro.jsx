@@ -66,14 +66,14 @@ function FormularioRegistro({ onBack }) {
   };
 
   useEffect(() => {
-    // Verificar si todos los campos tienen un valor (no están vacíos)
+    
     const allFieldsFilled = Object.values(formData).every((v) => v.trim() !== '');
     // Verificar si no hay ningún mensaje de error
     const noValidationErrors = Object.values(errors).every((e) => e === '');
 
-    // El formulario es válido si todos los campos están llenos Y no hay errores de validación
+    
     setIsFormValid(allFieldsFilled && noValidationErrors);
-  }, [formData, errors]); // Se ejecuta cuando formData o errors cambian
+  }, [formData, errors]); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,7 +83,7 @@ function FormularioRegistro({ onBack }) {
       validateField(key, value) // Esto también actualizará los estados de error
     );
 
-    if (isValidOnSubmit) { // Usa isValidOnSubmit aquí, ya que es el resultado de la validación final
+    if (isValidOnSubmit) { 
       Swal.fire({
         icon: 'success',
         title: '¡Registro exitoso!',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PaintingCard from '../../../assets/components/PaintingCard';
 import FormularioRegistro from '../../formularios/FormularioRegistro';
 import { ProductProvider } from '../../../shared/contexts/ProductContext';

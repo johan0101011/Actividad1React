@@ -1,0 +1,47 @@
+/* Moved from features/auth/components/LoginForm.css */
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.input-dark {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.login-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.login-info {
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+
+.register-logo {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}

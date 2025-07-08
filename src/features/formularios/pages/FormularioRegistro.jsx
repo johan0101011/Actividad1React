@@ -19,7 +19,6 @@ function FormularioRegistro({ onBack }) {
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
-  const [activeSection, setActiveSection] = useState('registro');
   const navigate = useNavigate();
 
   const validateField = (name, value) => {

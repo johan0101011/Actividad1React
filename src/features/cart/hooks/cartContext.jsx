@@ -1,11 +1,28 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const CartContext = createContext();
 
+const CART_STORAGE_KEY = 'carrito';
+
 export const CartProvider = ({ children }) => {
-  const [carrito, setCarrito] = useState([]);
+  const [carrito, setCarrito] = useState(() => {
+    try {
+      const storedCart = localStorage.getItem(CART_STORAGE_KEY);
+      return storedCart ? JSON.parse(storedCart) : [];
+    } catch (error) {
+      console.error('Error loading cart from localStorage', error);
+      return [];
+    }
+  });
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrito));
+    } catch (error) {
+      console.error('Error saving cart to localStorage', error);
+    }
+  }, [carrito]);
 
   const agregarProductoAlCarrito = (producto, cantidad) => {
     const existingIndex = carrito.findIndex(item => item.nombre === producto.title);

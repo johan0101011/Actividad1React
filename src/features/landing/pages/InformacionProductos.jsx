@@ -11,10 +11,13 @@ const InformacionProductos = () => {
   if (error) return <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>;
 
   return (
-    <div className="gallery">
-      {productos.map((p) => (
-        <Products key={p.id} producto={p} agregarProductoAlCarrito={agregarProductoAlCarrito} />
-      ))}
+    <div className="app-content">
+      <h1 className="titulo-principal">PRODUCTOS A AL VENTA</h1>
+      <div className="gallery">
+        {productos.map((p) => (
+          <Products key={p.id} producto={p} agregarProductoAlCarrito={agregarProductoAlCarrito} />
+        ))}
+      </div>
     </div>
   );
 };

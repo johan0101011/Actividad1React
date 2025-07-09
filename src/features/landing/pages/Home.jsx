@@ -52,7 +52,7 @@ function Home({ activeSection, setActiveSection }) {
       )}
 
       {activeSection === 'carrito' && (
-        <Carrito />
+        <Carrito setActiveSection={setActiveSection} />
       )}
 
       {activeSection === 'registro' && (

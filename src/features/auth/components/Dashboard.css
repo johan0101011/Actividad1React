@@ -1,18 +1,21 @@
+/* Dashboard styles updated to match cart component colors and nav style */
+
 .dashboard-container {
-  background-color: #121212; /* Dark gray background */
-  color: #e0e0e0; /* Light gray text */
+  background-color: #272121a6; /* semi-transparent dark overlay */
   padding: 20px;
+  color: #ffffff; /* dark brown text */
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .dashboard-header {
+  background-color: #3f3127; /* dark brown header */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px 8px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #333;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
 }
 
 .dashboard-header h1 {
@@ -21,9 +24,9 @@
 }
 
 .logout-button {
-  background-color: #333333;
+  background-color: #7f5539;
   border: none;
-  color: #e0e0e0;
+  color: white;
   padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
@@ -32,7 +35,7 @@
 }
 
 .logout-button:hover {
-  background-color: #555555;
+  background-color: #5e3e27;
 }
 
 .dashboard-content h3 {
@@ -56,9 +59,9 @@
 }
 
 button {
-  background-color: #222222;
-  color: #e0e0e0;
-  border: 1px solid #444444;
+  background-color: #7f5539;
+  color: white;
+  border: none;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
@@ -67,8 +70,8 @@ button {
 }
 
 button:hover {
-  background-color: #555555;
-  border-color: #555555;
+  background-color: #5e3e27;
+  border-color: #5e3e27;
   color: #fff;
 }
 

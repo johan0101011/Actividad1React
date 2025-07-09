@@ -82,46 +82,48 @@ const Dashboard = () => {
         </button>
       </div>
       <div className="dashboard-content">
-        <h3>Información del Usuario</h3>
-        {user ? (
-          <div className="user-info">
-            <div className="user-avatar">
-              {user.avatar ? (
-                <img src={user.avatar} alt={`${user.name}'s avatar`} />
-              ) : (
-                <img
-                  src="https://via.placeholder.com/70?text=User"
-                  alt="Avatar por defecto"
-                />
-              )}
+        <nav className="dashboard-nav">
+          <h3>Información del Usuario</h3>
+          {user ? (
+            <div className="user-info">
+              <div className="user-avatar">
+                {user.avatar ? (
+                  <img src={user.avatar} alt={`${user.name}'s avatar`} />
+                ) : (
+                  <img
+                    src="https://via.placeholder.com/70?text=User"
+                    alt="Avatar por defecto"
+                  />
+                )}
+              </div>
+              <p><strong>Nombre:</strong> {user.name}</p>
+              <p><strong>Email:</strong> {user.email}</p>
+              <p><strong>ID:</strong> {user.id}</p>
+              <p><strong>Rol:</strong> {user.role}</p>
             </div>
-            <p><strong>Nombre:</strong> {user.name}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>ID:</strong> {user.id}</p>
-            <p><strong>Rol:</strong> {user.role}</p>
-          </div>
-        ) : (
-          <p>No hay información del usuario disponible.</p>
-        )}
-        {mode === 'list' && (
-          <>
-            <button className="btn-create" onClick={() => setMode('form')} style={{ marginTop: '20px' }}>
-              Crear Nuevo Producto
-            </button>
-            <ProductList
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-              productos={productos}
+          ) : (
+            <p>No hay información del usuario disponible.</p>
+          )}
+          {mode === 'list' && (
+            <>
+              <button className="btn-create" onClick={() => setMode('form')} style={{ marginTop: '20px' }}>
+                Crear Nuevo Producto
+              </button>
+              <ProductList
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                productos={productos}
+              />
+            </>
+          )}
+          {mode === 'form' && (
+            <ProductForm
+              product={selectedProduct}
+              onSave={handleSave}
+              onCancel={handleCancel}
             />
-          </>
-        )}
-        {mode === 'form' && (
-          <ProductForm
-            product={selectedProduct}
-            onSave={handleSave}
-            onCancel={handleCancel}
-          />
-        )}
+          )}
+        </nav>
       </div>
     </div>
   );
